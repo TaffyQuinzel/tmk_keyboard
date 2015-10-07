@@ -1,12 +1,17 @@
 #include "keymap_common.h"
 
-const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+#ifdef KEYMAP_SECTION_ENABLE
+const uint8_t keymaps[KEYMAPS_COUNT][MATRIX_ROWS][MATRIX_COLS] __attribute__ ((section (".keymap.keymaps"))) = {
+#else
+const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] PROGMEM = {
+#endif
+  /* const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = { */
     /* 0: dvorak */
     KEYMAP_ANSI(
         GRV, 1,   2,   3,   4,   5,   6,   7,   8,   9,   0,   LBRC,RBRC,BSPC, \
-        TAB, QUOT,COMM,DOT, P,   Y,   F,   G,   C,   R,   L,   SLSH,EQL, BSLS, \
+        TAB, SCLN,COMM,DOT, P,   Y,   F,   G,   C,   R,   L,   SLSH,EQL, BSLS, \
         ESC, A,   O,   E,   U,   I,   D,   H,   T,   N,   S,   MINS,     ENT,  \
-        LSFT,SCLN,Q,   J,   K,   X,   B,   M,   W,   V,   Z,             RSFT, \
+        LSFT,QUOT,Q,   J,   K,   X,   B,   M,   W,   V,   Z,             RSFT, \
         LCTL,LALT,LGUI,          SPC,                     RALT,RGUI,FN0, RCTL),
     /* 1: qwerty */
     KEYMAP_ANSI(
@@ -29,13 +34,13 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------'
      *
      * ,-----------------------------------------------------------.
-     * |Esc| F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|       |
+     * |Esc| F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|Delete |
      * |-----------------------------------------------------------|
-     * |     |   | Up|   |   |   |   |   |   |Cal|   |Hom|Ins|FnL  |
+     * |     |Vmu|V- |V+ |   |   |   |PgD|PgU|Hom|End|   |FnL|Ins  |
      * |-----------------------------------------------------------|
-     * |      |Lef|Dow|Rig|   |   |Psc|Slk|Pau|   |Tsk|End|        |
+     * |Caps  |Mpp|Mst|Mne|Mpr|   |   |Dow|Up |Lef|Rig|   |        |
      * |-----------------------------------------------------------|
-     * |        |Del|   |Web|Mut|VoU|VoD|   |PgU|PgD|Del|          |
+     * |        |FnO|FnD|FnI|   |   |   |Pcr|Lck|Bre|   |          |
      * |-----------------------------------------------------------|
      * |    |    |    |                        |    |    |    |    |
      * `-----------------------------------------------------------'
@@ -49,7 +54,7 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ESC, F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9,  F10, F11, F12, DEL, \
         TRNS,MUTE,VOLD,VOLU,TRNS,TRNS,TRNS,PGDN,PGUP,HOME, END,TRNS,FN1, INS, \
         CAPS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,DOWN,  UP,LEFT,RGHT,TRNS,     TRNS, \
-        TRNS, FN5, FN6, FN7,TRNS,TRNS,TRNS,PSCR,TRNS,TRNS,TRNS,          TRNS, \
+        TRNS, FN4, FN5, FN6,TRNS,TRNS,TRNS,PSCR,TRNS,TRNS,TRNS,          TRNS, \
         TRNS,TRNS,TRNS,          TRNS,                    TRNS,TRNS,TRNS,TRNS),
     /* 3: Layout selector
      * ,-----------------------------------------------------------.
